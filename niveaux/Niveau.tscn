@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://plateaux/Plateau.tscn" type="PackedScene" id=1]
+[ext_resource path="res://billes/Bille.tscn" type="PackedScene" id=2]
+
+[sub_resource type="PhysicsMaterial" id=1]
+friction = 0.0
+bounce = 1.0
+
+[node name="Niveau" type="Node2D"]
+
+[node name="Plateau" parent="." instance=ExtResource( 1 )]
+position = Vector2( 64, 368 )
+
+[node name="Bille" parent="." instance=ExtResource( 2 )]
+position = Vector2( 48, 32 )
+physics_material_override = SubResource( 1 )
+contacts_reported = 6
+contact_monitor = true
+applied_torque = 2.0
+

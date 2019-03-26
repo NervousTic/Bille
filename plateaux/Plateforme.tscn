@@ -1,19 +1,16 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://plateaux/Plateau.gd" type="Script" id=1]
+[ext_resource path="res://plateaux/Plateforme.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 70, 20 )
+extents = Vector2( 100, 10 )
 
-[node name="Plateau" type="KinematicBody2D"]
-input_pickable = true
+[node name="Plateforme" type="Area2D"]
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 3.16, 0.44 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://plateaux/Plateau.tscn" type="PackedScene" id=1]
+[ext_resource path="res://plateaux/Plateau_Rebond.gd" type="Script" id=2]
+
+[node name="Plateau_Rebond" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="Sprite" parent="." index="0"]
+modulate = Color( 0.94902, 0.733333, 0.996078, 1 )
+self_modulate = Color( 0.921569, 0, 1, 1 )
+scale = Vector2( 2.16, 0.58 )
+

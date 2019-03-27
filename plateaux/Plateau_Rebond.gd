@@ -11,5 +11,21 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
-func coucou():
-	pass
+
+
+
+func _on_Zone_body_entered(body):
+	if body.is_in_group("bille"):
+		body.physics_material_override.absorbent = true
+#		body.physics_material_override.bounce = 10000000
+		print (body.physics_material_override.absorbent)
+	pass # Replace with function body.
+
+
+
+
+func _on_Zone_body_exited(body):
+	if body.is_in_group("bille"):
+		body.physics_material_override.absorbent = false
+		print (body.physics_material_override.absorbent)
+	pass # Replace with function body.

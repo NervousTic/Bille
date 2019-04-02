@@ -26,38 +26,40 @@ applied_torque = 2.0
 "rebond",
 ] instance=ExtResource( 3 )]
 editor/display_folded = true
-position = Vector2( 240, 210 )
+position = Vector2( 370, 250 )
 rotation = 0.785398
 input_pickable = false
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-editor/display_folded = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+visible = false
 position = Vector2( -70, 330 )
 shape = SubResource( 2 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+visible = false
 position = Vector2( 1100, 330 )
 shape = SubResource( 2 )
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+visible = false
 position = Vector2( 530, -70 )
 rotation = 1.5708
 shape = SubResource( 2 )
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+visible = false
 position = Vector2( 510, 670 )
 rotation = 1.5708
 shape = SubResource( 2 )
 
 [node name="Entonnoir" parent="." instance=ExtResource( 4 )]
-position = Vector2( 410, 210 )
+position = Vector2( 750, 390 )
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5
 autostart = true
 
-[connection signal="body_entered" from="Bille" to="." method="_on_Bille_body_entered"]
 [connection signal="body_exited" from="Entonnoir" to="Entonnoir" method="_on_Entonnoir_body_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

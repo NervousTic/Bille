@@ -23,6 +23,7 @@ func _physics_process(delta):
 		var diff_pos = get_global_mouse_position() - position
 #		print ("diff_pos = " + str(diff_pos))
 		rotation = position.angle_to(diff_pos)
+		
 	
 	
 	

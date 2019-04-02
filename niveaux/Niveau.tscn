@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://niveaux/Niveau.gd" type="Script" id=1]
 [ext_resource path="res://billes/Bille.tscn" type="PackedScene" id=2]
 [ext_resource path="res://plateaux/Plateau_Rebond.tscn" type="PackedScene" id=3]
+[ext_resource path="res://entonnoir/Entonnoir.tscn" type="PackedScene" id=4]
 
 [sub_resource type="PhysicsMaterial" id=1]
 rough = true
@@ -13,10 +14,9 @@ extents = Vector2( 68.8697, 630 )
 
 [node name="Niveau" type="Node2D"]
 script = ExtResource( 1 )
+sac_de_bille = ExtResource( 2 )
 
-[node name="Bille" parent="." groups=[
-"bille",
-] instance=ExtResource( 2 )]
+[node name="Bille" parent="." instance=ExtResource( 2 )]
 position = Vector2( 410, 110 )
 physics_material_override = SubResource( 1 )
 contacts_reported = 6
@@ -26,16 +26,8 @@ applied_torque = 2.0
 "rebond",
 ] instance=ExtResource( 3 )]
 editor/display_folded = true
-position = Vector2( 400, 270 )
+position = Vector2( 240, 210 )
 rotation = 0.785398
-input_pickable = false
-
-[node name="Plateau_Rebond2" parent="." groups=[
-"rebond",
-] instance=ExtResource( 3 )]
-editor/display_folded = true
-position = Vector2( 690, 390 )
-rotation = -0.785397
 input_pickable = false
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
@@ -59,4 +51,13 @@ position = Vector2( 510, 670 )
 rotation = 1.5708
 shape = SubResource( 2 )
 
+[node name="Entonnoir" parent="." instance=ExtResource( 4 )]
+position = Vector2( 410, 210 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
 [connection signal="body_entered" from="Bille" to="." method="_on_Bille_body_entered"]
+[connection signal="body_exited" from="Entonnoir" to="Entonnoir" method="_on_Entonnoir_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

@@ -2,57 +2,41 @@
 
 [ext_resource path="res://niveaux/Niveau.gd" type="Script" id=1]
 [ext_resource path="res://billes/Bille.tscn" type="PackedScene" id=2]
-[ext_resource path="res://plateaux/Plateau_Rebond.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/PNG/game_background_1/game_background_1.png" type="Texture" id=3]
 [ext_resource path="res://entonnoir/Entonnoir.tscn" type="PackedScene" id=4]
+[ext_resource path="res://plateaux/Plateau.tscn" type="PackedScene" id=5]
 
-[sub_resource type="PhysicsMaterial" id=1]
-rough = true
-bounce = 1.0
-
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 68.8697, 630 )
 
 [node name="Niveau" type="Node2D"]
 script = ExtResource( 1 )
 sac_de_bille = ExtResource( 2 )
 
-[node name="Bille" parent="." instance=ExtResource( 2 )]
-position = Vector2( 410, 110 )
-physics_material_override = SubResource( 1 )
-contacts_reported = 6
-applied_torque = 2.0
-
-[node name="Plateau_Rebond" parent="." groups=[
-"rebond",
-] instance=ExtResource( 3 )]
-editor/display_folded = true
-position = Vector2( 370, 250 )
-rotation = 0.785398
-input_pickable = false
+[node name="game_background_1" type="Sprite" parent="."]
+position = Vector2( 512, 300 )
+scale = Vector2( 0.52, 0.56 )
+texture = ExtResource( 3 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-visible = false
 position = Vector2( -70, 330 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-visible = false
 position = Vector2( 1100, 330 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
-visible = false
 position = Vector2( 530, -70 )
 rotation = 1.5708
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
-visible = false
 position = Vector2( 510, 670 )
 rotation = 1.5708
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="Entonnoir" parent="." instance=ExtResource( 4 )]
 position = Vector2( 750, 390 )
@@ -60,6 +44,19 @@ position = Vector2( 750, 390 )
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5
 autostart = true
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 740, 60 )
+rotation = 1.5708
+scale = Vector2( 5, 5 )
+
+[node name="Plateau" parent="." instance=ExtResource( 5 )]
+position = Vector2( 580, 240 )
+acceleration = 5
+
+[node name="Plateau2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 220, 338.158 )
+acceleration = 0
 
 [connection signal="body_exited" from="Entonnoir" to="Entonnoir" method="_on_Entonnoir_body_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

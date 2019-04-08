@@ -12,8 +12,8 @@ func _ready():
 #func _process(delta):
 #	pass
 
-
-func _on_Bille_body_entered(body):
-	if body.is_in_group("rebond"):
-		linear_velocity *= 5
-	pass # Replace with function body.
+#
+#func _on_Bille_body_entered(body):
+#	if body.is_in_group("rebond"):
+#		linear_velocity *= 5
+#	pass # Replace with function body.

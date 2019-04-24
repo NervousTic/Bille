@@ -9,6 +9,8 @@ func _ready():
 #	position_initiale = $Position2D.position
 	pass
 
+func _process(delta):
+	$CanvasLayer/ColorRect/MarginContainer/HBoxContainer/LabelTimer.text = str(int($TimerNiveau.time_left))
 
 # Timer pour faire apparaitre les billes
 # Message envoyé à la fin du timer
@@ -17,8 +19,14 @@ func _on_Timer_timeout():
 	var bille = sac_de_bille.instance()
 	# On la place sur la position_initiale
 	bille.position = $Position2D.position
+	#bille.linear_velocity = Vector2( cos($Position2D.rotation), sin($Position2D.rotation)) * 10
 	# La bille créee est ajoutée sous le noeud niveau
 	add_child(bille)
 	# On redemarre pour le timer
 	$Timer.start()
 
+
+
+func _on_Entonnoir_score(score):
+	$CanvasLayer/ColorRect/MarginContainer/HBoxContainer/LabelScore.text = str(score)
+	pass # Replace with function body.

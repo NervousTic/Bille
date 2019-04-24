@@ -3,10 +3,10 @@
 [ext_resource path="res://plateaux/Plateau.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 74.0865, 29.587 )
-
 [sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 69.343, 21.945 )
+
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 63.8092, 17.4651 )
 
 [node name="Plateau" type="KinematicBody2D"]
@@ -17,17 +17,16 @@ __meta__ = {
 }
 
 [node name="Zone" type="Area2D" parent="."]
-editor/display_folded = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Zone"]
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 2, 0.56 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [connection signal="mouse_entered" from="." to="." method="_on_Plateau_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_Plateau_mouse_exited"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://niveaux/Niveau.gd" type="Script" id=1]
 [ext_resource path="res://billes/Bille.tscn" type="PackedScene" id=2]
@@ -6,37 +6,119 @@
 [ext_resource path="res://entonnoir/Entonnoir.tscn" type="PackedScene" id=4]
 [ext_resource path="res://plateaux/Plateau.tscn" type="PackedScene" id=5]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://assets/font/Frenchpress freefont.otf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+outline_size = 1
+outline_color = Color( 0.129412, 0.909804, 0.0980392, 1 )
+font_data = SubResource( 1 )
+
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 68.8697, 630 )
 
 [node name="Niveau" type="Node2D"]
 script = ExtResource( 1 )
 sac_de_bille = ExtResource( 2 )
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+editor/display_folded = true
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+modulate = Color( 0.341176, 0.32549, 0.32549, 0.415686 )
+anchor_right = 1.0
+margin_bottom = 50.0
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ColorRect/MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 1014.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+custom_constants/separation = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/ColorRect/MarginContainer/HBoxContainer"]
+modulate = Color( 0.854902, 0.0235294, 0.0235294, 1 )
+margin_top = 14.0
+margin_right = 15.0
+margin_bottom = 16.0
+size_flags_horizontal = 2
+size_flags_vertical = 6
+custom_fonts/font = SubResource( 2 )
+text = "Temps restant :"
+align = 1
+valign = 1
+
+[node name="LabelTimer" type="Label" parent="CanvasLayer/ColorRect/MarginContainer/HBoxContainer"]
+modulate = Color( 0.854902, 0.0235294, 0.0235294, 1 )
+margin_left = 251.0
+margin_top = 14.0
+margin_right = 500.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_fonts/font = SubResource( 2 )
+align = 1
+valign = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/ColorRect/MarginContainer/HBoxContainer"]
+modulate = Color( 0.854902, 0.0235294, 0.0235294, 1 )
+margin_left = 502.0
+margin_top = 14.0
+margin_right = 751.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_fonts/font = SubResource( 2 )
+text = "Score : "
+align = 1
+valign = 1
+
+[node name="LabelScore" type="Label" parent="CanvasLayer/ColorRect/MarginContainer/HBoxContainer"]
+modulate = Color( 0.854902, 0.0235294, 0.0235294, 1 )
+margin_left = 753.0
+margin_top = 14.0
+margin_right = 1004.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_fonts/font = SubResource( 2 )
+align = 1
+valign = 1
+
 [node name="game_background_1" type="Sprite" parent="."]
-position = Vector2( 512, 300 )
-scale = Vector2( 0.52, 0.56 )
 texture = ExtResource( 3 )
+centered = false
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+editor/display_folded = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( -70, 330 )
-shape = SubResource( 1 )
+position = Vector2( -58.8962, 324.448 )
+shape = SubResource( 3 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( 1100, 330 )
-shape = SubResource( 1 )
+position = Vector2( 1083.34, 320.747 )
+shape = SubResource( 3 )
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2( 530, -70 )
 rotation = 1.5708
-shape = SubResource( 1 )
+shape = SubResource( 3 )
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2( 510, 670 )
 rotation = 1.5708
-shape = SubResource( 1 )
+shape = SubResource( 3 )
 
 [node name="Entonnoir" parent="." instance=ExtResource( 4 )]
 position = Vector2( 750, 390 )
@@ -46,17 +128,23 @@ wait_time = 0.5
 autostart = true
 
 [node name="Position2D" type="Position2D" parent="."]
-position = Vector2( 740, 60 )
-rotation = 1.5708
+position = Vector2( 235.604, 532.662 )
 scale = Vector2( 5, 5 )
 
 [node name="Plateau" parent="." instance=ExtResource( 5 )]
 position = Vector2( 580, 240 )
-acceleration = 5
+acceleration = 1
 
 [node name="Plateau2" parent="." instance=ExtResource( 5 )]
 position = Vector2( 220, 338.158 )
-acceleration = 0
+acceleration = 5
+rebond = 1
+
+[node name="TimerNiveau" type="Timer" parent="."]
+wait_time = 30.0
+one_shot = true
+autostart = true
 
 [connection signal="body_exited" from="Entonnoir" to="Entonnoir" method="_on_Entonnoir_body_exited"]
+[connection signal="score" from="Entonnoir" to="." method="_on_Entonnoir_score"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
